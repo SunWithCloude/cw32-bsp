@@ -7,7 +7,7 @@
 
 use embassy_executor::main;
 
-use cw32f020_bsp::bsp_pin};
+use cw32f020_bsp::bsp_pin;
 
 embassy_cw32::bind_interrupts!(struct Irqs {
     UART1 => embassy_cw32::uart::Uart1Irq;
