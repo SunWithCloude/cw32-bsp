@@ -1,0 +1,29 @@
+[package]
+name = "cw32l031-bsp"
+version = "0.1.0"
+edition = "2024"
+description = "Generic minimal BSP for the CW32L031 Cortex-M0+ MCU on embassy-cw32"
+categories = ["embedded", "hardware-support", "no-std"]
+keywords = ["cw32", "cw32l031", "bsp", "embassy"]
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+embassy-cw32 = { path = "../../../embassy-cw32", default-features = false, features = ["critical-section-impl", "cw32l031"] }
+embassy-time = "0.5"
+cw32l031-pac = { path = "../../../cw32-pacs/crates/cw32l031-pac", default-features = false }
+
+[features]
+# 透传 rt(向量表)到 embassy-cw32 → 家族 PAC
+rt = ["embassy-cw32/rt"]
+
+[target.'cfg(all(target_arch = "arm", target_os = "none"))'.dev-dependencies]
+embassy-executor = { version = "0.10", features = ["platform-cortex-m", "executor-thread"] }
+cortex-m-rt = { version = "0.7", features = ["device"] }
+
+[[example]]
+name = "blink"
+required-features = ["rt"]
+
+[[example]]
+name = "uart_echo"
+required-features = ["rt"]

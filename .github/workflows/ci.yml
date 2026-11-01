@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        family: [cw32f003, cw32f020, cw32f030, cw32l010, cw32l011, cw32l012, cw32l031, cw32l052, cw32l083, cw32r031, cw32w031]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: thumbv6m-none-eabi
+      - name: Check out sibling crates
+        run: |
+          git clone --depth 1 https://github.com/SunWithCloude/cw32-pacs ../cw32-pacs
+          git clone --depth 1 https://github.com/SunWithCloude/Cw32l012_pac ../cw32l012-pac
+          git clone --depth 1 https://github.com/SunWithCloude/Cw32l012_embassy ../embassy-cw32
+      - run: cargo build -p ${{ matrix.family }}-bsp --target thumbv6m-none-eabi --release --features rt --examples
