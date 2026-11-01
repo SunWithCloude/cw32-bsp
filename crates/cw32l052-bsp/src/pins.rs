@@ -5,7 +5,7 @@
 //! `source_macro`)交叉核对。生成脚本:cw32-bsp/gen_pins.py。
 //!
 //! ⚠ 可落性:embassy 的 Peripherals 端口字段由 PAC 决定——本家族 PAC
-//! 收编端口:PA, PB, PC, PF。标注 `[PAC]` 的组合其端口未被 PAC
+//! 收编端口:PA, PB, PC, PD, PF。标注 `[PAC]` 的组合其端口未被 PAC
 //! 收编为 Peripherals 字段,当前无法构造(等 PAC 生成器补端口),
 //! 其余组合可直接经 [`bsp_pin!`] 落地。
 

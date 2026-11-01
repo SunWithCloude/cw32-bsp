@@ -15,12 +15,12 @@ FAMS = ["f003", "f020", "f030", "l010", "l011", "l012", "l031", "l052", "l083", 
 # 每家族 Peripherals 收编端口(由 cw32-pacs / cw32l012-pac 盘点;PAC 生成器
 # 补端口后更新此表并重新生成)
 # embassy 实际可落端口(PAC Peripherals 字段 ∩ embassy gpio impl 接线;
-# l052/l083 的 GPIOD/GPIOE 已在 PAC 但 embassy 的共享向量 ISR 未接,不入表)
+# l052/l083 的 GPIOD/GPIOE 已接线——共享向量 handler 成对派发 C+D/E+F)
 GPIO_FIELDS = {
     "f003": ["A", "B", "C"], "f020": ["A", "B", "C", "F"],
     "f030": ["A", "B", "C", "F"], "l010": ["A", "B"], "l011": ["A", "B", "C"],
     "l012": ["A", "B", "C", "F"], "l031": ["A", "B", "C", "F"],
-    "l052": ["A", "B", "C", "F"], "l083": ["A", "B", "C", "F"],
+    "l052": ["A", "B", "C", "D", "F"], "l083": ["A", "B", "C", "D", "E", "F"],
     "r031": ["A", "B", "C", "F"], "w031": ["A", "B", "C", "F"],
 }
 SIGS = {"UART1": ["TXD", "RXD"], "SPI1": ["SCK", "MOSI", "MISO"], "I2C1": ["SDA", "SCL"],
