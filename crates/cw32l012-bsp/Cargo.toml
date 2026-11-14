@@ -6,11 +6,16 @@ description = "Generic minimal BSP for the CW32L012 Cortex-M0+ MCU on embassy-cw
 categories = ["embedded", "hardware-support", "no-std"]
 keywords = ["cw32", "cw32l012", "bsp", "embassy"]
 license = "MIT OR Apache-2.0"
+repository = "https://github.com/SunWithCloude/cw32-bsp"
 
 [dependencies]
-embassy-cw32 = { path = "../../../embassy-cw32", default-features = false, features = ["critical-section-impl", "cw32l012"] }
+embassy-cw32 = { version = "=0.5.0", default-features = false, features = ["critical-section-impl", "cw32l012"] }
 embassy-time = "0.5"
-cw32l012-pac = { path = "../../../cw32l012-pac", default-features = false }
+# 家族 PAC:bsp 源码不直接引用(仅经 embassy-cw32 间接使用),显式钉版锁定
+# 寄存器位面,与 embassy-cw32 内部口径一致;升级须手动改版并重跑全家族矩阵。
+# crates.io 上 cw32l012-pac 原名是缺陷 svd2rust 版(第三方),用户手册转录版
+# 发布名为 cw32l012-pac-um(0.3.0 起,版本线与其余家族不同)。
+cw32l012-pac-um = { version = "=0.3.0", default-features = false }
 
 [features]
 # 透传 rt(向量表)到 embassy-cw32 → 家族 PAC
