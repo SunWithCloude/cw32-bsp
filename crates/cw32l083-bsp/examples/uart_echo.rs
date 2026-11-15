@@ -11,7 +11,7 @@ use cw32l083_bsp::bsp_pin;
 
 // l083 的 UART 向量共享命名:UART1 与硬件 UART4 共用 IRQ27
 embassy_cw32::bind_interrupts!(struct Irqs {
-    UART1_UART4 => embassy_cw32::uart::Uart1Irq;
+    UART1_UART4 => embassy_cw32::uart::Uart1Uart4Irq;
 });
 
 #[main]

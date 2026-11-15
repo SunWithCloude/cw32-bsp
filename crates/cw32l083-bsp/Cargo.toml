@@ -1,6 +1,6 @@
 [package]
 name = "cw32l083-bsp"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 description = "Generic minimal BSP for the CW32L083 Cortex-M0+ MCU on embassy-cw32"
 categories = ["embedded", "hardware-support", "no-std"]
